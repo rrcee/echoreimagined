@@ -347,7 +347,7 @@
     <string name="language_x">Lingua %1$s</string>
     <string name="guide">Guida</string>
     <string name="donate">Dona</string>
-    <string name="contributors">Contribuenti</string>
+    <string name="contributors">Contributori</string>
     <string name="app_desc">Un app mer ascoltare musica.</string>
     <string name="manage">Gestisci</string>
     <string name="no_account">Nessun Account</string>
@@ -365,9 +365,9 @@
     <string name="song">Canzone</string>
     <string name="podcast">Podcast</string>
     <string name="genres_x">Generi: %1$s</string>
-    <string name="disc_number_n">Disco numero: %1$d</string>
+    <string name="disc_number_n">Numero del disco: %1$d</string>
     <string name="album_order_n">Numero d\'ordine nell\'album: %1$d</string>
-    <string name="confirmation">Comferma</string>
+    <string name="confirmation">Conferma</string>
     <string name="delete_playlist_confirmation">Sei sicuro di voler eliminare %1$s?</string>
     <string name="confirm">Conferma</string>
     <string name="big_cover">Cover più grandi</string>
