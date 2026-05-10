@@ -1,5 +1,7 @@
 #noinspection ShrinkerUnresolvedReference
 -dontoptimize
+-dontwarn com.mikepenz.hypnoticcanvas.**
+-dontwarn com.skydoves.landscapist.**
 -keep class io.ktor.client.engine.cio.CIOEngineContainer { *; }
 -keep enum com.skydoves.landscapist.** { *; }
 -keep class com.skydoves.landscapist.core.model.** { *; }

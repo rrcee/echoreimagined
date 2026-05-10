@@ -80,7 +80,7 @@ private val config = SavedStateConfiguration {
 @Composable
 fun App() = EchoTheme {
     val initialSheetValue = LocalInitialPlayerSheetValue.current
-    val betterSheet = rememberBetterSheet(72.dp, initialSheetValue)
+    val betterSheet = rememberBetterSheet(80.dp, initialSheetValue)
     val startPadding = remember { mutableStateOf(0.dp) }
     val bottomPadding = remember { mutableStateOf(0.dp) }
     val backStack = rememberNavBackStack(

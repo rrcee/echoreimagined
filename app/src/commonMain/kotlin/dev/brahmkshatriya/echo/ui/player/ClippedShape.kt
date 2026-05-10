@@ -17,6 +17,7 @@ class ClippedShape(
     val minHeight: Dp,
     val progress: Float,
     val backProgress: Float,
+    val topPadding: Dp,
     val startPadding: Dp,
     val endPadding: Dp,
     val radius: Dp = 16.dp
@@ -34,7 +35,7 @@ class ClippedShape(
         val offset = 1 - progress
         val startPadPx = density.run { startPadding.toPx() * offset }
         val endPadPx = density.run { endPadding.toPx() * offset }
-
+        val topPadPx = density.run { topPadding.toPx() * offset }
         val leftPadding = if (layoutDirection == LayoutDirection.Ltr) startPadPx else endPadPx
         val rightPadding = if (layoutDirection == LayoutDirection.Ltr) endPadPx else startPadPx
 
@@ -44,7 +45,7 @@ class ClippedShape(
 
         return Outline.Rounded(
             RoundRect(
-                Rect(Offset(leftPadding, 0f), Size(rectWidth, height)),
+                Rect(Offset(leftPadding, topPadPx), Size(rectWidth, height - topPadPx)),
                 CornerRadius(cornerRadius)
             )
         )

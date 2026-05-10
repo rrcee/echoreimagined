@@ -59,7 +59,7 @@ fun BetterNavDisplay(
         entryDecorators = listOf(rememberSaveableStateHolderNavEntryDecorator()),
         entryProvider = entryProvider(builder = entryProviderBuilder),
     )
-    val sceneState = rememberSceneState(entries, SinglePaneSceneStrategy()) {
+    val sceneState = rememberSceneState(entries, listOf(SinglePaneSceneStrategy())) {
         backStack.removeLastOrNull()
     }
     val scene = sceneState.currentScene

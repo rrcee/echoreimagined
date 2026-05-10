@@ -71,6 +71,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.PointerIcon
@@ -80,6 +81,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -106,13 +108,17 @@ import echo.app.generated.resources.ic_close
 import echo.app.generated.resources.ic_favorite
 import echo.app.generated.resources.ic_favorite_filled
 import echo.app.generated.resources.ic_keyboard_arrow_down
-import echo.app.generated.resources.ic_lyrics
-import echo.app.generated.resources.ic_lyrics_filled
+import echo.app.generated.resources.ic_mic_music_3
+import echo.app.generated.resources.ic_more_vert
 import echo.app.generated.resources.ic_play_arrow
+import echo.app.generated.resources.ic_play_arrow_32
+import echo.app.generated.resources.ic_queue_music
 import echo.app.generated.resources.ic_repeat
 import echo.app.generated.resources.ic_shuffle
 import echo.app.generated.resources.ic_skip_next
+import echo.app.generated.resources.ic_skip_next_32
 import echo.app.generated.resources.ic_skip_previous
+import echo.app.generated.resources.ic_skip_previous_32
 import echo.app.generated.resources.ic_volume_up
 import ir.mahozad.multiplatform.wavyslider.WaveDirection
 import ir.mahozad.multiplatform.wavyslider.material3.Track
@@ -140,14 +146,15 @@ fun PlayerItem(i: Int) {
     }
 }
 
-val maxSongCoverSize = 360.dp
-val maxSongCoverHeight = 400.dp
-val songCoverHorizontalPadding = 16.dp
-val songCoverVerticalPadding = 8.dp
+const val maxSongCoverSize = 360
+const val maxSongCoverHeight = 400
+const val songCoverHorizontalPadding = 16
+const val songCoverVerticalPadding = 8
+const val collapsedHorizontalPadding = 8
 
-fun Modifier.coverSize() = padding(songCoverHorizontalPadding, songCoverVerticalPadding)
-    .widthIn(max = maxSongCoverSize)
-    .height(maxSongCoverHeight)
+fun Modifier.coverSize() = padding(songCoverHorizontalPadding.dp, songCoverVerticalPadding.dp)
+    .widthIn(max = maxSongCoverSize.dp)
+    .height(maxSongCoverHeight.dp)
     .aspectRatio(1f)
     .fillMaxSize()
 
@@ -189,7 +196,9 @@ fun BoxScope.SongPlayerItem(
     ) {
         item { TopBar(i) { topBarHeight.intValue = it } }
         item { Box(Modifier.coverSize()) }
-        item { SongController(i) }
+        item { ExpandedTimeline(i) }
+        item { Controller() }
+        item { BottomBar() }
         materialGroup {
             (0..10).forEach {
                 card(
@@ -244,7 +253,105 @@ fun BoxScope.SongPlayerItem(
 }
 
 @Composable
-fun SongController(i: Int) = Box {
+fun PlayerButtons() = Row(
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.spacedBy(4.dp),
+    modifier = Modifier.clip(RoundedCornerShape(100))
+        .background(colorScheme.primary.copy(0.25f))
+        .padding(horizontal = 4.dp)
+) {
+    IconButton(
+        onClick = { },
+        modifier = Modifier.size(40.dp),
+        shapes = IconButtonDefaults.shapes()
+    ) {
+        Icon(
+            painterResource(Res.drawable.ic_skip_previous),
+            contentDescription = "Close Player"
+        )
+    }
+    FilledIconButton(
+        onClick = { },
+        modifier = Modifier.size(48.dp),
+        shapes = IconButtonDefaults.shapes()
+    ) {
+        Icon(
+            painterResource(Res.drawable.ic_play_arrow), contentDescription = "Play"
+        )
+    }
+    IconButton(
+        onClick = { },
+        modifier = Modifier.size(40.dp),
+        shapes = IconButtonDefaults.shapes()
+    ) {
+        Icon(
+            painterResource(Res.drawable.ic_skip_next),
+            contentDescription = "Close Player"
+        )
+    }
+}
+
+
+@Composable
+fun Controller() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier.fillMaxWidth().padding(8.dp)
+    ) {
+        IconButton(
+            onClick = { },
+            modifier = Modifier.size(48.dp),
+            shapes = IconButtonDefaults.shapes()
+        ) {
+            Icon(
+                painterResource(Res.drawable.ic_repeat), contentDescription = "Close Player"
+            )
+        }
+        IconButton(
+            onClick = { },
+            modifier = Modifier.size(56.dp),
+            shapes = IconButtonDefaults.shapes()
+        ) {
+            Icon(
+                painterResource(Res.drawable.ic_skip_previous_32),
+                contentDescription = "Close Player"
+            )
+        }
+        FilledIconButton(
+            onClick = { },
+            modifier = Modifier.size(56.dp),
+            shapes = IconButtonDefaults.shapes()
+        ) {
+            Icon(
+                painterResource(Res.drawable.ic_play_arrow_32), contentDescription = "Play"
+            )
+        }
+        IconButton(
+            onClick = { },
+            modifier = Modifier.size(56.dp),
+            shapes = IconButtonDefaults.shapes()
+        ) {
+            Icon(
+                painterResource(Res.drawable.ic_skip_next_32),
+                contentDescription = "Close Player"
+            )
+        }
+
+        IconButton(
+            onClick = { },
+            modifier = Modifier.size(48.dp),
+            shapes = IconButtonDefaults.shapes()
+        ) {
+            Icon(
+                painterResource(Res.drawable.ic_shuffle), contentDescription = "Close Player"
+            )
+        }
+    }
+}
+
+@Composable
+fun ExpandedTimeline(i: Int) = Box {
     val maxRange = 6_000f
     val animatedValue = remember { Animatable(0f) }
     var showRemainingTime by remember { mutableStateOf(false) }
@@ -271,8 +378,8 @@ fun SongController(i: Int) = Box {
     }
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(
-            Modifier.padding(horizontal = 16.dp).onSizeChanged {
-                heightState.value = density.run { it.height.toDp() } - 8.dp
+            Modifier.padding(start = 16.dp, end = 8.dp).onSizeChanged {
+                heightState.value = density.run { it.height.toDp() } - 12.dp
             },
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
@@ -280,10 +387,10 @@ fun SongController(i: Int) = Box {
                 Text("Song $i")
                 Text("Artist $i", color = colorScheme.primary)
             }
-            LyricsToggle()
             LikeToggle()
+            MoreButton()
         }
-        Spacer(Modifier.height(32.dp))
+        Spacer(Modifier.height(24.dp))
         Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp)) {
             Text(
                 text = currentTimeLabel,
@@ -295,44 +402,62 @@ fun SongController(i: Int) = Box {
             Text(
                 text = endLabel,
                 style = mergedStyle,
-                modifier = Modifier.clickable(interactionSource = endInteraction) {
-                    showRemainingTime = !showRemainingTime
-                }.padding(8.dp)
+                modifier = Modifier.clip(RoundedCornerShape(8.dp))
+                    .clickable(interactionSource = endInteraction) {
+                        showRemainingTime = !showRemainingTime
+                    }.padding(8.dp)
             )
         }
     }
     Text(
         text = "FLAC",
         style = mergedStyle,
-        modifier = Modifier.padding(8.dp).align(Alignment.BottomCenter),
+        modifier = Modifier
+            .padding(bottom = 4.dp)
+            .clip(RoundedCornerShape(100))
+            .background(colorScheme.primary.copy(0.1f))
+            .clickable {}
+            .padding(12.dp, 4.dp)
+            .align(Alignment.BottomCenter)
     )
 }
 
 @Composable
+fun MoreButton() {
+    IconButton(
+        onClick = { },
+        modifier = Modifier.height(48.dp).width(32.dp),
+        shapes = IconButtonDefaults.shapes()
+    ) {
+        Icon(
+            painterResource(Res.drawable.ic_more_vert),
+            contentDescription = "Close Player"
+        )
+    }
+}
+
+@Composable
 fun LyricsToggle() {
-    var lyrics by remember { mutableStateOf(true) }
+    val lyrics = remember { mutableStateOf(false) }
     val interactionSource = remember { MutableInteractionSource() }
     FilledTonalIconToggleButton(
-        checked = lyrics,
-        onCheckedChange = { lyrics = it },
-        modifier = Modifier.size(44.dp),
+        checked = lyrics.value,
+        onCheckedChange = { lyrics.value = it },
+        modifier = Modifier.size(48.dp),
         shapes = IconButtonDefaults.toggleableShapes(
             checkedShape = RoundedCornerShape(100)
         ),
         interactionSource = interactionSource,
         colors = IconButtonDefaults.filledTonalIconToggleButtonColors(
-            colorScheme.primary.copy(0.25f),
+            Color.Transparent,
             colorScheme.onPrimaryContainer,
-            checkedContentColor = colorScheme.onPrimary,
-            checkedContainerColor = colorScheme.primary
+            checkedContainerColor = Color.Transparent,
+            checkedContentColor = colorScheme.onPrimaryContainer,
         ),
     ) {
         Icon(
-            painterResource(
-                if (lyrics) Res.drawable.ic_lyrics_filled
-                else Res.drawable.ic_lyrics
-            ),
-            contentDescription = if (lyrics) "Lyrics On" else "Lyrics Off"
+            painterResource(Res.drawable.ic_mic_music_3),
+            contentDescription = if (lyrics.value) "Lyrics On" else "Lyrics Off"
         )
     }
 }
@@ -340,11 +465,11 @@ fun LyricsToggle() {
 
 @Composable
 fun LikeToggle() {
-    var favourite by remember { mutableStateOf(true) }
+    val favourite = remember { mutableStateOf(true) }
     val interactionSource = remember { MutableInteractionSource() }
     FilledTonalIconToggleButton(
-        checked = favourite,
-        onCheckedChange = { favourite = it },
+        checked = favourite.value,
+        onCheckedChange = { favourite.value = it },
         modifier = Modifier.size(44.dp),
         shapes = IconButtonDefaults.toggleableShapes(
             checkedShape = RoundedCornerShape(100)
@@ -359,24 +484,29 @@ fun LikeToggle() {
     ) {
         Icon(
             painterResource(
-                if (favourite) Res.drawable.ic_favorite_filled
+                if (favourite.value) Res.drawable.ic_favorite_filled
                 else Res.drawable.ic_favorite
             ),
-            contentDescription = if (favourite) "Favourite" else "Unfavourite"
+            contentDescription = if (favourite.value) "Favourite" else "Unfavourite"
         )
     }
 }
+
 
 @Composable
 fun Modifier.playerBackground(colored: Boolean = false): Modifier {
     val playerSheet = LocalPlayerSheet.current
     val playerPadding = LocalPlayerPadding.current
-    val peekHeight = playerSheet?.peekHeight ?: 72.dp
+    val peekHeight = playerSheet?.peekHeight ?: 80.dp
     val layoutDirection = LocalLayoutDirection.current
     val startPadding = playerPadding.calculateStartPadding(layoutDirection)
     val endPadding = playerPadding.calculateEndPadding(layoutDirection)
-    val animatedStart = animateDpAsState(startPadding + 12.dp, simpleTween())
-    val animatedEnd = animateDpAsState(endPadding + 12.dp, simpleTween())
+    val animatedStart = animateDpAsState(
+        startPadding + collapsedHorizontalPadding.dp, simpleTween()
+    )
+    val animatedEnd = animateDpAsState(
+        endPadding + collapsedHorizontalPadding.dp, simpleTween()
+    )
 
     return fillMaxSize().graphicsLayer {
         val sheetProgress = playerSheet?.progressState?.floatValue ?: 0f
@@ -387,6 +517,7 @@ fun Modifier.playerBackground(colored: Boolean = false): Modifier {
             peekHeight - 8.dp,
             positiveProgress,
             backProgress,
+            8.dp,
             animatedStart.value,
             animatedEnd.value
         )
@@ -411,7 +542,7 @@ fun CoverArt(
     val image = artWorks[i]
 
     val animatedTargetX = animateDpAsState(
-        playerPadding.calculateStartPadding(layoutDirection) + 20.dp,
+        playerPadding.calculateStartPadding(layoutDirection) + (collapsedHorizontalPadding + 8).dp,
         simpleTween()
     )
     BetterImage(
@@ -425,7 +556,8 @@ fun CoverArt(
                 val offset = 1 - positiveProgress
 
                 val targetX = animatedTargetX.value.toPx()
-                val targetY = 8.dp.toPx() + (size.height - maxSongCoverHeight.toPx()) / 2f
+                val extraHeight = size.height - maxSongCoverHeight.dp.toPx()
+                val targetY = 16.dp.toPx() + extraHeight / 2f
                 val targetSize = 48.dp
                 val targetScale = targetSize.toPx() / size.height
                 scaleX = 1 + (targetScale - 1) * offset
@@ -433,9 +565,9 @@ fun CoverArt(
                 transformOrigin = TransformOrigin(0f, 0f)
                 val center = (widthState() - size.width) / 2f
                 translationX =
-                    -songCoverHorizontalPadding.toPx() + targetX * offset + center * positiveProgress
+                    -songCoverHorizontalPadding.dp.toPx() + targetX * offset + center * positiveProgress
 
-                translationY = (-songCoverVerticalPadding.toPx() + targetY) * offset +
+                translationY = (-songCoverVerticalPadding.dp.toPx() + targetY) * offset +
                         (topBarHeight() - scrollOffset()) * positiveProgress
 
                 clip = true
@@ -491,6 +623,44 @@ fun TopBar(index: Int, onHeightChanged: (Int) -> Unit) {
     }
 }
 
+val lyrics = listOf(
+    listOf("Stranded", "in", "the", "open"),
+    listOf("Dried", "out", "tears", "of", "sorrow"),
+    listOf("Lacking", "all", "emotion"),
+    listOf("Staring", "down", "the", "barrel", "waiting", "for", "the"),
+    listOf("Final", "gates", "to", "open"),
+    listOf("To", "a", "new", "tomorrow"),
+    listOf("Moving", "with", "the", "motion"),
+    listOf("Following", "the", "light", "that", "sets", "me", "free"),
+    listOf("Sets", "me", "free")
+)
+
+@Preview
+@Composable
+fun BottomBar() {
+    Row(
+        Modifier.padding(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        LyricsToggle()
+        Box(
+            Modifier.height(48.dp)
+                .weight(1f)
+                .clip(RoundedCornerShape(24.dp))
+                .background(colorScheme.primary.copy(0.1f)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(lyrics[0].joinToString(" "))
+        }
+        Icon(
+            painterResource(Res.drawable.ic_queue_music),
+            modifier = Modifier.size(48.dp).padding(12.dp),
+            contentDescription = null
+        )
+    }
+}
+
 @Composable
 fun CollapsedPlayer(i: Int) {
     val playerSheet = LocalPlayerSheet.current
@@ -511,7 +681,8 @@ fun CollapsedPlayer(i: Int) {
                 translationY = -positiveProgress * size.height
             }
             .padding(playerPadding)
-            .padding(horizontal = 12.dp)
+            .padding(top = 8.dp)
+            .padding(horizontal = collapsedHorizontalPadding.dp)
             .clip(RoundedCornerShape(16.dp))
             .clickable { scope.launch { sheetState?.expand() } }
             .padding(8.dp)
@@ -604,53 +775,7 @@ fun CollapsedPlayer(i: Int) {
             }
         }
 
-        item(playButtonShow) {
-            Box(Modifier.padding(horizontal = 0.dp)) {
-                Box(
-                    Modifier
-                        .width(136.dp)
-                        .height(48.dp)
-                        .padding(vertical = 4.dp)
-                        .clip(RoundedCornerShape(100))
-                        .background(colorScheme.primary.copy(0.25f))
-                )
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(horizontal = 4.dp)
-                ) {
-                    IconButton(
-                        onClick = { scope.launch { sheetState?.hide() } },
-                        modifier = Modifier.size(40.dp),
-                        shapes = IconButtonDefaults.shapes()
-                    ) {
-                        Icon(
-                            painterResource(Res.drawable.ic_skip_previous),
-                            contentDescription = "Close Player"
-                        )
-                    }
-                    FilledIconButton(
-                        onClick = { },
-                        modifier = Modifier.size(48.dp),
-                        shapes = IconButtonDefaults.shapes()
-                    ) {
-                        Icon(
-                            painterResource(Res.drawable.ic_play_arrow), contentDescription = "Play"
-                        )
-                    }
-                    IconButton(
-                        onClick = { scope.launch { sheetState?.hide() } },
-                        modifier = Modifier.size(40.dp),
-                        shapes = IconButtonDefaults.shapes()
-                    ) {
-                        Icon(
-                            painterResource(Res.drawable.ic_skip_next),
-                            contentDescription = "Close Player"
-                        )
-                    }
-                }
-            }
-        }
-
+        item(playButtonShow) { PlayerButtons() }
         item(710.dp) {
             val interactionSource = remember { MutableInteractionSource() }
             IconButton(
@@ -780,7 +905,7 @@ fun PlayerSlider(
                     inactiveTrackColor = colorScheme.primary.copy(0.25f)
                 ),
                 waveLength = 24.dp,
-                waveHeight = 8.dp,
+                waveHeight = 0.dp,
                 waveVelocity = 8.dp to WaveDirection.TAIL,
                 waveThickness = 4.dp,
                 trackThickness = 4.dp,

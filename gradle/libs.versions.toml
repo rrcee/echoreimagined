@@ -1,42 +1,43 @@
 [versions]
-kotlin = "2.3.10"
-agp = "9.0.1"
-compose = "1.11.0-alpha02"
-ktor = "3.4.0"
-androidxLifecycle = "2.10.0-alpha08"
-landscapist = "2.9.5"
+kotlin = "2.3.21"
+agp = "9.2.1"
+compose = "1.11.0-rc01"
+ktor = "3.4.3"
+androidxLifecycle = "2.10.0"
+landscapist = "2.9.7"
 
 [libraries]
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
-landscapist-animation = { module = "com.github.skydoves:landscapist-animation", version.ref = "landscapist" }
-landscapist-image = { module = "com.github.skydoves:landscapist-image", version.ref = "landscapist" }
-landscapist-placeholder = { module = "com.github.skydoves:landscapist-placeholder", version.ref = "landscapist" }
-landscapist-palette = { module = "com.github.skydoves:landscapist-palette", version.ref = "landscapist" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version = "1.10.0-alpha05" }
 ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
 ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "compose" }
 ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose" }
 
-androidx-navigation = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version = "1.0.0-alpha06" }
+androidx-navigation = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version = "1.1.1" }
 androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "androidxLifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 
-compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose" }
-materialKolor = { module = "com.materialkolor:material-kolor", version = "5.0.0-alpha06" }
+landscapist-animation = { module = "com.github.skydoves:landscapist-animation", version.ref = "landscapist" }
+landscapist-image = { module = "com.github.skydoves:landscapist-image", version.ref = "landscapist" }
+landscapist-placeholder = { module = "com.github.skydoves:landscapist-placeholder", version.ref = "landscapist" }
+landscapist-palette = { module = "com.github.skydoves:landscapist-palette", version.ref = "landscapist" }
+
+materialKolor = { module = "com.materialkolor:material-kolor", version = "5.0.0-alpha07" }
 hypnoticcanvas = { module = "com.mikepenz.hypnoticcanvas:hypnoticcanvas", version = "0.4.1" }
 wavy-slider = { module = "ir.mahozad.multiplatform:wavy-slider", version = "2.2.0" }
 
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.10.0" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.11.0" }
 
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.12.4" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.13.0" }
 
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version = "1.10.2" }
 brahmkshatriya-betterwindow = { module = "dev.brahmkshatriya:betterwindow", version = "1.1.0" }
-composeNativeTray = { module = "io.github.kdroidfilter:composenativetray", version = "1.1.0" }
+composeNativeTray = { module = "io.github.kdroidfilter:composenativetray", version = "1.3.0" }
 javamediatransportcontrols = { module = "io.github.selemba1000:JavaMediaTransportControls", version = "0.0.3" }
 
 [bundles]
@@ -50,11 +51,11 @@ lifecycle = ["androidx-lifecycle-viewmodelCompose", "androidx-lifecycle-runtimeC
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
-composeHotReload = { id = "org.jetbrains.compose.hot-reload", version = "1.0.0" }
-composeMultiplatform = { id = "org.jetbrains.compose", version = "1.10.1" }
+composeHotReload = { id = "org.jetbrains.compose.hot-reload", version = "1.1.0" }
+composeMultiplatform = { id = "org.jetbrains.compose", version = "1.10.3" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
-stabilityAnalyzer = { id = "com.github.skydoves.compose.stability.analyzer", version = "0.7.0" }
+stabilityAnalyzer = { id = "com.github.skydoves.compose.stability.analyzer", version = "0.7.4" }
 
 androidKMPLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }

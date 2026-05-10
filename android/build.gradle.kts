@@ -6,12 +6,12 @@ val gitCount = execute("git", "rev-list", "--count", "HEAD").toInt()
 
 android {
     namespace = "dev.brahmkshatriya.echo.android"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = property("GROUP").toString()
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = gitCount
         versionName = "${property("VERSION")}-$gitHash"
     }
@@ -22,6 +22,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
