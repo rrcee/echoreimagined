@@ -1,11 +1,15 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeHotReload)
 }
+
 val gitHash = execute("git", "rev-parse", "HEAD").take(7)
 val gitCount = execute("git", "rev-list", "--count", "HEAD").toInt()
 
 android {
-    namespace = "dev.brahmkshatriya.echo.android"
+    namespace = "dev.brahmkshatriya.echo"
     compileSdk = 37
 
     defaultConfig {
@@ -15,10 +19,12 @@ android {
         versionCode = gitCount
         versionName = "${property("VERSION")}-$gitHash"
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -28,8 +34,11 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("debug")
-            packaging.resources.excludes.add("META-INF/*")
         }
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.kotlin.get()
     }
 }
 

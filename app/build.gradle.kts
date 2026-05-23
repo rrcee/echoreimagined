@@ -1,6 +1,4 @@
-﻿import org.jetbrains.compose.reload.gradle.ComposeHotRun
-
-plugins {
+﻿plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinxSerialization)
 
@@ -27,7 +25,7 @@ kotlin {
     jvmToolchain(21)
     jvm()
     android {
-        namespace = "dev.brahmkshatriya.echo"
+        namespace = "dev.brahmkshatriya.echo.platform"
         compileSdk = 37
         androidResources.enable = true
     }
@@ -64,8 +62,4 @@ compose.resources {
     publicResClass = true
     packageOfResClass = "echo.app.generated.resources"
     generateResClass = always
-}
-
-tasks.withType<ComposeHotRun>().configureEach {
-    mainClass.set("dev.brahmkshatriya.echo.MainKt")
 }

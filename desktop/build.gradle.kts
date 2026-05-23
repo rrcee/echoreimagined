@@ -1,16 +1,23 @@
-
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinJVM)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeHotReload)
 }
+
 dependencies {
     implementation(project(":app"))
 }
 
 apply(from = "proguards.gradle.kts")
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "echo.app.generated.resources"
+    generateResClass = always
+}
 
 compose.desktop {
     application {
