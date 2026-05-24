@@ -6,4 +6,23 @@
     <attr name="navBarBackground" format="color" />
     <attr name="itemCoverSize" format="dimension" />
     <attr name="itemCorner" format="dimension" />
+
+    <!-- Portal Attributes -->
+    <attr name="colorSkyCanvas" format="color" />
+    <attr name="colorWhiteFrost" format="color" />
+    <attr name="colorWhiteFrostTranslucent" format="color" />
+    <attr name="colorWhiteFrostBubble" format="color" />
+    <attr name="colorInk" format="color" />
+    <attr name="colorCharcoalText" format="color" />
+    <attr name="colorMutedAsh" format="color" />
+    <attr name="colorPortalBlue" format="color" />
+    <attr name="colorBlueAura" format="color" />
+
+    <attr name="fontSansSerif" format="string" />
+    <attr name="fontPerfectlyNineties" format="string" />
+    <attr name="fontInter" format="string" />
+
+    <attr name="textAppearancePortalBody" format="reference" />
+    <attr name="textAppearancePortalHeading" format="reference" />
+    <attr name="textAppearancePortalDisplay" format="reference" />
 </resources>
