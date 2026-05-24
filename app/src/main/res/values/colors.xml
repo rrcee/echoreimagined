@@ -9,4 +9,15 @@
     <color name="amoled_bg_semi">#54FFFFFF</color>
     <color name="amoled_fg">@color/black</color>
     <color name="amoled_fg_semi">#14000000</color>
+
+    <!-- Portal Style Reference Colors -->
+    <color name="color_sky_canvas">#f7f7f7</color>
+    <color name="color_white_frost">#ffffff</color>
+    <color name="color_white_frost_translucent">#99ffffff</color> <!-- 60% opacity -->
+    <color name="color_white_frost_bubble">#ccffffff</color> <!-- 80% opacity -->
+    <color name="color_ink">#000000</color>
+    <color name="color_charcoal_text">#3e3e3e</color>
+    <color name="color_muted_ash">#636363</color>
+    <color name="color_portal_blue">#007aff</color>
+    <color name="color_blue_aura">#8cc2ff</color>
 </resources>

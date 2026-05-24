@@ -7,4 +7,36 @@
     <dimen name="nav_height">@dimen/collapsed_cover_size</dimen>
     <dimen name="player_info_peek_height">@dimen/nav_height</dimen>
     <dimen name="player_more_top_margin">78dp</dimen>
+
+    <!-- Portal Spacing Scale -->
+    <dimen name="spacing_4">4dp</dimen>
+    <dimen name="spacing_5">5dp</dimen>
+    <dimen name="spacing_6">6dp</dimen>
+    <dimen name="spacing_8">8dp</dimen>
+    <dimen name="spacing_10">10dp</dimen>
+    <dimen name="spacing_12">12dp</dimen>
+    <dimen name="spacing_14">14dp</dimen>
+    <dimen name="spacing_16">16dp</dimen>
+    <dimen name="spacing_20">20dp</dimen>
+    <dimen name="spacing_24">24dp</dimen>
+    <dimen name="spacing_36">36dp</dimen>
+    <dimen name="spacing_40">40dp</dimen>
+    <dimen name="spacing_45">45dp</dimen>
+    <dimen name="spacing_60">60dp</dimen>
+    <dimen name="spacing_80">80dp</dimen>
+    <dimen name="spacing_100">100dp</dimen>
+
+    <dimen name="section_gap">40dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="element_gap">10dp</dimen>
+
+    <!-- Portal Border Radii -->
+    <dimen name="radius_navs">22dp</dimen>
+    <dimen name="radius_cards">16dp</dimen>
+    <dimen name="radius_frosted_cards">24dp</dimen>
+    <dimen name="radius_icons">22dp</dimen>
+    <dimen name="radius_other">22dp</dimen>
+    <dimen name="radius_images">22dp</dimen>
+    <dimen name="radius_buttons">50dp</dimen>
+    <dimen name="radius_bubble_cards">50dp</dimen>
 </resources>

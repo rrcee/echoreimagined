@@ -24,8 +24,17 @@
     </style>
 
     <style name="EchoBottomSheetStyle" parent="Widget.Material3.BottomSheet">
-        <item name="backgroundTint">?navBackground</item>
+        <item name="backgroundTint">?colorWhiteFrost</item>
         <item name="behavior_peekHeight">512dp</item>
+        <item name="shapeAppearance">@style/PortalBottomSheetShape</item>
+    </style>
+
+    <style name="PortalBottomSheetShape" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/radius_frosted_cards</item>
+        <item name="cornerSizeTopRight">@dimen/radius_frosted_cards</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
     <style name="TopCollapsingBar" parent="Widget.Material3.CollapsingToolbar.Large">
@@ -40,8 +49,26 @@
     <style name="EchoCollapsingBar" parent="TopCollapsingBar" />
 
     <style name="EchoCardView">
-        <item name="cardCornerRadius">?itemCorner</item>
-        <item name="cardBackgroundColor">?echoBackground</item>
+        <item name="cardCornerRadius">@dimen/radius_cards</item>
+        <item name="cardBackgroundColor">?colorWhiteFrost</item>
+        <item name="cardElevation">0dp</item>
+        <item name="shapeAppearance">@style/EchoCardViewShape</item>
+    </style>
+
+    <style name="EchoCardViewShape" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_cards</item>
+    </style>
+
+    <style name="PortalFrostedCard">
+        <item name="android:background">@drawable/portal_frosted_card_bg</item>
+        <item name="android:padding">@dimen/spacing_20</item>
+    </style>
+
+    <style name="PortalElevatedBubbleCard">
+        <item name="android:background">@drawable/portal_bubble_card_bg</item>
+        <item name="android:padding">@dimen/spacing_20</item>
+        <item name="android:elevation">4dp</item>
     </style>
 
     <style name="EchoAppBarLayout" parent="Widget.Material3.AppBarLayout">
@@ -141,6 +168,26 @@
         <item name="android:paddingEnd">24dp</item>
         <item name="android:textSize">16sp</item>
         <item name="iconPadding">24dp</item>
+        <item name="shapeAppearance">@style/PortalButtonShape</item>
+    </style>
+
+    <style name="PortalButtonShape" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_buttons</item>
+    </style>
+
+    <style name="PortalPrimaryActionButton" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/portal_primary_button_bg</item>
+        <item name="android:textColor">?colorInk</item>
+        <item name="android:paddingStart">36dp</item>
+        <item name="android:paddingEnd">36dp</item>
+    </style>
+
+    <style name="PortalPrimaryGhostButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:background">@drawable/portal_ghost_button_bg</item>
+        <item name="android:textColor">?colorInk</item>
+        <item name="android:paddingStart">36dp</item>
+        <item name="android:paddingEnd">36dp</item>
     </style>
 
     <style name="Selectable">
@@ -400,4 +447,28 @@
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintWidth_max">@dimen/max_cover_size</item>
     </style>
+
+    <!-- Portal Typography Styles -->
+    <style name="TextAppearance.Portal.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:fontFamily">?fontInter</item>
+        <item name="android:textColor">?colorCharcoalText</item>
+        <item name="lineHeight">18.9sp</item> <!-- 1.35 * 14 -->
+    </style>
+
+    <style name="TextAppearance.Portal.Heading" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">?fontPerfectlyNineties</item>
+        <item name="android:textColor">?colorInk</item>
+        <item name="lineHeight">36sp</item> <!-- 1.0 * 36 -->
+    </style>
+
+    <style name="TextAppearance.Portal.Display" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="android:textSize">48sp</item>
+        <item name="android:fontFamily">?fontPerfectlyNineties</item>
+        <item name="android:textColor">?colorInk</item>
+        <item name="lineHeight">48sp</item> <!-- 1.0 * 48 -->
+    </style>
+
 </resources>
